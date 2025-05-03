@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="TestSuite">
+    <test name="TestProject">
+        <classes>
+            <class name="com.nopcommerce.users.User_01_Register_Login" />
+        </classes>
+    </test>
+</suite>
