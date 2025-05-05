@@ -200,7 +200,7 @@ public class BasePage {
     }
 
     public void rightClickToElement(WebDriver driver, String locator) {
-        new Actions(driver).moveToElement(getElement(driver,locator)).contextClick().perform();
+        new Actions(driver).contextClick(getElement(driver,locator)).perform();
     }
 
     public void dragAndDrop(WebDriver driver, String locator) {
