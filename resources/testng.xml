@@ -4,7 +4,7 @@
 <suite name="TestSuite">
     <test name="TestProject">
         <classes>
-            <class name="com.nopcommerce.users.User_01_Register_Login" />
+            <class name="com.nopcommerce.users.Level_01_Repeat_Yourself" />
         </classes>
     </test>
 </suite>

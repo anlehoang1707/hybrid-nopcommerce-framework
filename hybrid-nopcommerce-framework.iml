@@ -11,5 +11,9 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="selenium-testng" level="project" />
+    <orderEntry type="library" name="sourcesDoc" level="project" />
+    <orderEntry type="library" name="selenium-server-4.32.0" level="project" />
+    <orderEntry type="library" name="selenium-server-4.15.0" level="project" />
+    <orderEntry type="library" name="testng-7.10.2" level="project" />
   </component>
 </module>
