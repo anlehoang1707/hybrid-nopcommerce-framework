@@ -266,44 +266,44 @@ public class BasePage {
                 getElement(driver, locator));
     }
 
-    public void sleepInSeconds(int timeInSecond) throws InterruptedException {
-        Thread.sleep(timeInSecond*1000);
+    public void sleepInSeconds(int timeInSeconds) throws InterruptedException {
+        Thread.sleep(timeInSeconds*1000);
     }
 
-    public void waitForElementVisible(WebDriver driver, String locator,int timeInSecond) {
-        new WebDriverWait(driver,Duration.ofSeconds(timeInSecond)).until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator)));
+    public void waitForElementVisible(WebDriver driver, String locator,int timeInSeconds) {
+        new WebDriverWait(driver,Duration.ofSeconds(timeInSeconds)).until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator)));
     }
 
-    public void waitForListElementVisible(WebDriver driver, String locator,int timeInSecond) {
-        new WebDriverWait(driver,Duration.ofSeconds(timeInSecond)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(getByXpath(locator)));
+    public void waitForListElementVisible(WebDriver driver, String locator,int timeInSeconds) {
+        new WebDriverWait(driver,Duration.ofSeconds(timeInSeconds)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(getByXpath(locator)));
     }
 
-    public void waitForElementSelected(WebDriver driver, String locator,int timeInSecond) {
-        new WebDriverWait(driver,Duration.ofSeconds(timeInSecond)).until(ExpectedConditions.elementToBeSelected(getByXpath(locator)));
+    public void waitForElementSelected(WebDriver driver, String locator,int timeInSeconds) {
+        new WebDriverWait(driver,Duration.ofSeconds(timeInSeconds)).until(ExpectedConditions.elementToBeSelected(getByXpath(locator)));
     }
 
-    public void waitForElementClickable(WebDriver driver, String locator,int timeInSecond) {
-        new WebDriverWait(driver,Duration.ofSeconds(timeInSecond)).until(ExpectedConditions.elementToBeClickable(getByXpath(locator)));
+    public void waitForElementClickable(WebDriver driver, String locator,int timeInSeconds) {
+        new WebDriverWait(driver,Duration.ofSeconds(timeInSeconds)).until(ExpectedConditions.elementToBeClickable(getByXpath(locator)));
     }
 
-    public void waitForElementInvisible(WebDriver driver, String locator,int timeInSecond) {
-        new WebDriverWait(driver,Duration.ofSeconds(timeInSecond)).until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(locator)));
+    public void waitForElementInvisible(WebDriver driver, String locator,int timeInSeconds) {
+        new WebDriverWait(driver,Duration.ofSeconds(timeInSeconds)).until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(locator)));
     }
 
-    public void waitForListElementInvisible(WebDriver driver, String locator,int timeInSecond) {
-        new WebDriverWait(driver,Duration.ofSeconds(timeInSecond)).until(ExpectedConditions.invisibilityOfAllElements(getListElements(driver,locator)));
+    public void waitForListElementInvisible(WebDriver driver, String locator,int timeInSeconds) {
+        new WebDriverWait(driver,Duration.ofSeconds(timeInSeconds)).until(ExpectedConditions.invisibilityOfAllElements(getListElements(driver,locator)));
     }
 
-    public void waitForElementPresence(WebDriver driver, String locator, int timeInSecond) {
-        new WebDriverWait(driver,Duration.ofSeconds(timeInSecond)).until(ExpectedConditions.presenceOfElementLocated(getByXpath(locator)));
+    public void waitForElementPresence(WebDriver driver, String locator, int timeInSeconds) {
+        new WebDriverWait(driver,Duration.ofSeconds(timeInSeconds)).until(ExpectedConditions.presenceOfElementLocated(getByXpath(locator)));
     }
 
-    public void waitForListElementPresence(WebDriver driver, String locator, int timeInSecond) {
-        new WebDriverWait(driver,Duration.ofSeconds(timeInSecond)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByXpath(locator)));
+    public void waitForListElementPresence(WebDriver driver, String locator, int timeInSeconds) {
+        new WebDriverWait(driver,Duration.ofSeconds(timeInSeconds)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByXpath(locator)));
     }
 
-    public void waitForAlertPresence(WebDriver driver, String locator, int timeInSecond) {
-        new WebDriverWait(driver,Duration.ofSeconds(timeInSecond)).until(ExpectedConditions.alertIsPresent());
+    public void waitForAlertPresence(WebDriver driver, String locator, int timeInSeconds) {
+        new WebDriverWait(driver,Duration.ofSeconds(timeInSeconds)).until(ExpectedConditions.alertIsPresent());
     }
 
 
