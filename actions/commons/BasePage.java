@@ -13,6 +13,10 @@ import java.util.Set;
 
 public class BasePage {
 
+    public static BasePage getBasePage() {
+        return new BasePage();
+    }
+
     public void openPageUrl(WebDriver driver, String url) {
         driver.get(url);
     }

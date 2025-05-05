@@ -4,7 +4,8 @@
 <suite name="TestSuite">
     <test name="TestProject">
         <classes>
-            <class name="com.nopcommerce.users.Level_01_Repeat_Yourself" />
+            <class name="com.nopcommerce.users.Level_02_BasePage_I_Initial" />
+            <class name="com.nopcommerce.users.Level_02_BasePage_II_StaticMethod" />
         </classes>
     </test>
 </suite>
