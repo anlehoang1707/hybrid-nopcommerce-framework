@@ -22,20 +22,21 @@ public class BaseTest {
     ;
 
     protected WebDriver getBrowser(String browserName) {
-        switch (browserName) {
-            case "edge":
+        BrowserList browserList = BrowserList.valueOf(browserName.toUpperCase());
+        switch (browserList) {
+            case EDGE:
                 EdgeOptions edgeOptions = new EdgeOptions();
                 edgeOptions.addArguments("--user-data-dir=C:/Users/anlehoang/AppData/Local/Microsoft/Edge/User Data/");
                 edgeOptions.addArguments("--profile-directory=Profile 4");
                 driver = new EdgeDriver(edgeOptions);
                 break;
-            case "chrome":
+            case CHROME:
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--user-data-dir=C:/Users/anlehoang/AppData/Local/Google/Chrome/User Data/");
                 chromeOptions.addArguments("--profile-directory=Profile 6");
                 driver = new ChromeDriver(chromeOptions);
                 break;
-            case "firefox":
+            case FIREFOX:
                 driver = new FirefoxDriver();
                 break;
             default:

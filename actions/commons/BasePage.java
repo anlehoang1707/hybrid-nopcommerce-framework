@@ -115,6 +115,7 @@ public class BasePage {
     }
 
     public void sendkeyToElement(WebDriver driver, String locator, String keysToSend) {
+        getElement(driver, locator).clear();
         getElement(driver, locator).sendKeys(keysToSend);
     }
 
