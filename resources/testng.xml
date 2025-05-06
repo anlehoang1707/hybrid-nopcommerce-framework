@@ -5,8 +5,8 @@
     <test name="Run on EDGE">
         <parameter name="browser" value="edge"/>
         <classes>
-            <class name="com.nopcommerce.users.Level_04_Multiple_Browser" />
-            <class name="com.nopcommerce.users.Level_05_PageFactory" />
+            <class name="com.nopcommerce.users.Level_06_Page_Generator" />
+<!--            <class name="com.nopcommerce.users.Level_05_PageFactory" />-->
         </classes>
     </test>
 

@@ -51,7 +51,8 @@ public class RegisterPageObject extends BasePage {
         return getTextElement(driver,RegisterPageUI.REGISTER_SUCCESS_MESSAGE);
     }
 
-    public void clickToContinueButton() {
+    public HomePageObject clickToContinueButton() {
         clickToElement(driver,RegisterPageUI.CONTINUE_BUTTON);
+        return PageGenerator.getHomePage(driver);
     }
 }
