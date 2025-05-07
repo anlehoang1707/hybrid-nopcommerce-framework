@@ -1,4 +1,4 @@
-package pageUIs;
+package pageUIs.sidebar;
 
 public class OrdersPageUI {
 }

@@ -10,14 +10,14 @@ import org.testng.annotations.Test;
 import pageObjects.*;
 import pageObjects.sidebar.*;
 
-public class Level_07_Switch_Page_Object extends BaseTest {
+public class Level_08_Page_Navigation extends BaseTest {
     WebDriver driver;
     CustomerInfoPageObject customerInfoPage;
     HomePageObject homePage;
     LoginPageObject loginPage;
     RegisterPageObject registerPage;
     AddressPageObject addressPage;
-    BackInStockSubscriptionsPageObject backInStockSubscriptionsPage;
+    BackInStockSubscriptionsPageObject backInStockSubscriptionsPageObject;
     ChangePasswordPageObject changePasswordPage;
     DownloadableProductsPageObject downloadableProductsPage;
     MyProductReviewsPageObject myProductReviewsPage;
@@ -25,6 +25,7 @@ public class Level_07_Switch_Page_Object extends BaseTest {
     RewardPointsPageObject rewardPointsPage;
 
     private String firstName, lastName, email, password, companyName;
+
 
     @Parameters("browser")
     @BeforeClass
@@ -85,15 +86,15 @@ public class Level_07_Switch_Page_Object extends BaseTest {
     public void User_04_Switch_Page() {
         addressPage = customerInfoPage.openAddressPage(driver);
 
-        myProductReviewsPage = addressPage.openMyProductReviewsPage(driver);
+        myProductReviewsPage = addressPage.openMyProductReviewsPage();
 
-        ordersPage = myProductReviewsPage.openOrdersPage(driver);
+        ordersPage = myProductReviewsPage.openOrdersPage();
 
-        downloadableProductsPage = ordersPage.openDownloadableProductsPage(driver);
+        downloadableProductsPage = ordersPage.openDownloadableProductsPage();
 
-        addressPage = downloadableProductsPage.openAddressPage(driver);
+        addressPage = downloadableProductsPage.openAddressPage();
 
-        myProductReviewsPage = addressPage.openMyProductReviewsPage(driver);
+        myProductReviewsPage = addressPage.openMyProductReviewsPage();
 
     }
 

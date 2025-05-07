@@ -1,6 +1,7 @@
 package pageObjects;
 
 import org.openqa.selenium.WebDriver;
+import pageObjects.sidebar.*;
 
 public class PageGenerator {
     public static HomePageObject getHomePage(WebDriver driver) {
