@@ -15,7 +15,7 @@ public class HomePageObject extends BasePage {
         waitForElementClickable(driver,HomePageUI.REGISTER_LINK,15);
     }
 
-    public RegisterPageObject clickToRegisterLink() {
+    public RegisterPageObject openRegisterPage() {
         clickToElement(driver,HomePageUI.REGISTER_LINK);
         return PageGenerator.getRegisterPage(driver);
     }
@@ -31,12 +31,12 @@ public class HomePageObject extends BasePage {
         waitForElementClickable(driver,HomePageUI.LOGIN_LINK,15);
     }
 
-    public LoginPageObject clickToLoginLink() {
+    public LoginPageObject openLoginPage() {
         clickToElement(driver,HomePageUI.LOGIN_LINK);
         return PageGenerator.getLoginPage(driver);
     }
 
-    public CustomerInfoPageObject clickToMyAccountLink() {
+    public CustomerInfoPageObject openCustomerInfoPage() {
         clickToElement(driver,HomePageUI.MY_ACCOUNT_LINK);
         return PageGenerator.getCustomerInfoPage(driver);
     }

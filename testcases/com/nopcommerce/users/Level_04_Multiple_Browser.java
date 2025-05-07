@@ -2,9 +2,6 @@ package com.nopcommerce.users;
 
 import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -14,8 +11,6 @@ import pageObjects.CustomerInfoPageObject;
 import pageObjects.HomePageObject;
 import pageObjects.LoginPageObject;
 import pageObjects.RegisterPageObject;
-
-import java.time.Duration;
 
 public class Level_04_Multiple_Browser extends BaseTest {
     WebDriver driver;
@@ -40,7 +35,7 @@ public class Level_04_Multiple_Browser extends BaseTest {
     public void User_01_Register() {
         HomePageObject homePage = new HomePageObject(driver);
         homePage.waitForRegisterLinkToClick();
-        homePage.clickToRegisterLink();
+        homePage.openRegisterPage();
 
         RegisterPageObject registerPage = new RegisterPageObject(driver);
         registerPage.waitForMaleRadioClickable();
@@ -63,7 +58,7 @@ public class Level_04_Multiple_Browser extends BaseTest {
     public void User_02_Login() {
         HomePageObject homePage = new HomePageObject(driver);
         homePage.waitForLoginLinkToClick();
-        homePage.clickToLoginLink();
+        homePage.openLoginPage();
 
         LoginPageObject loginPage = new LoginPageObject(driver);
         loginPage.inputToEmailTextBox(email);
@@ -71,7 +66,7 @@ public class Level_04_Multiple_Browser extends BaseTest {
         loginPage.clickToLoginButton();
 
         Assert.assertTrue(homePage.isDisplayedMyAccountLink());
-        homePage.clickToMyAccountLink();
+        homePage.openCustomerInfoPage();
     }
 
     @Test

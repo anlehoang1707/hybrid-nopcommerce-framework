@@ -32,7 +32,7 @@ public class Level_06_Page_Generator extends BaseTest {
     @Test
     public void User_01_Register() {
         homePage.waitForRegisterLinkToClick();
-        registerPage = homePage.clickToRegisterLink();
+        registerPage = homePage.openRegisterPage();
 
         registerPage.waitForMaleRadioClickable();
         registerPage.checkMaleRadio();
@@ -54,7 +54,7 @@ public class Level_06_Page_Generator extends BaseTest {
     public void User_02_Login() {
         homePage.waitForLoginLinkToClick();
 
-        loginPage = homePage.clickToLoginLink();
+        loginPage = homePage.openLoginPage();
         loginPage.inputToEmailTextBox(email);
         loginPage.inputToPasswordTextBox(password);
         homePage = loginPage.clickToLoginButton();
@@ -64,7 +64,7 @@ public class Level_06_Page_Generator extends BaseTest {
 
     @Test
     public void User_03_CustomerInfo() {
-        customerInfoPage = homePage.clickToMyAccountLink();
+        customerInfoPage = homePage.openCustomerInfoPage();
         Assert.assertTrue(customerInfoPage.isMaleRadioSelected());
         Assert.assertTrue(customerInfoPage.isFirstNameDisplayed(firstName));
         Assert.assertTrue(customerInfoPage.isLastNameDisplayed(lastName));

@@ -6,6 +6,10 @@ import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.*;
+import pageUIs.BasePageUI;
+import pageUIs.ChangePasswordPageUI;
+import pageUIs.HomePageUI;
 
 import java.time.Duration;
 import java.util.List;
@@ -305,6 +309,48 @@ public class BasePage {
 
     public void waitForAlertPresence(WebDriver driver, String locator, int timeInSeconds) {
         new WebDriverWait(driver,Duration.ofSeconds(timeInSeconds)).until(ExpectedConditions.alertIsPresent());
+    }
+
+    public AddressPageObject openAddressPage(WebDriver driver) {
+        waitForElementClickable(driver,BasePageUI.ADDRESS_LINK,15);
+        clickToElement(driver, BasePageUI.ADDRESS_LINK);
+        return PageGenerator.getAddressPage(driver);
+    }
+
+    public BackInStockSubscriptionsPageObject openBackInStockSubscriptionsPage(WebDriver driver) {
+        waitForElementClickable(driver,BasePageUI.BACK_IN_STOCK_SUBSCRIPTIONS_LINK,15);
+        clickToElement(driver, BasePageUI.BACK_IN_STOCK_SUBSCRIPTIONS_LINK);
+        return PageGenerator.getBackInStockSubscriptionsPage(driver);
+    }
+
+    public ChangePasswordPageObject openChangePasswordPage(WebDriver driver) {
+        waitForElementClickable(driver,BasePageUI.CHANGE_PASSWORD_LINK,15);
+        clickToElement(driver, BasePageUI.CHANGE_PASSWORD_LINK);
+        return PageGenerator.getChangePasswordPage(driver);
+    }
+
+    public DownloadableProductsPageObject openDownloadableProductsPage(WebDriver driver) {
+        waitForElementClickable(driver,BasePageUI.DOWNLOADABLE_PRODUCTS_LINK,15);
+        clickToElement(driver, BasePageUI.DOWNLOADABLE_PRODUCTS_LINK);
+        return PageGenerator.getDownloadableProductsPage(driver);
+    }
+
+    public MyProductReviewsPageObject openMyProductReviewsPage(WebDriver driver) {
+        waitForElementClickable(driver,BasePageUI.MY_PRODUCT_REVIEWS_LINK,15);
+        clickToElement(driver, BasePageUI.MY_PRODUCT_REVIEWS_LINK);
+        return PageGenerator.getMyProductReviewsPage(driver);
+    }
+
+    public OrdersPageObject openOrdersPage(WebDriver driver) {
+        waitForElementClickable(driver,BasePageUI.ORDERS_LINK,15);
+        clickToElement(driver, BasePageUI.ORDERS_LINK);
+        return PageGenerator.getOrdersPage(driver);
+    }
+
+    public RewardPointsPageObject openRewardPointsPage(WebDriver driver) {
+        waitForElementClickable(driver,BasePageUI.REWARD_POINTS_LINK,15);
+        clickToElement(driver, BasePageUI.REWARD_POINTS_LINK);
+        return PageGenerator.getRewardPointsPage(driver);
     }
 
 
