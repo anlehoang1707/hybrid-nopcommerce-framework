@@ -81,12 +81,19 @@ public class Level_09_Switch_Site_Url extends BaseTest {
 
         adminLoginPage.inputUserNameTextBox(adminUserName);
         adminLoginPage.inputPasswordTextBox(adminPassword);
-        adminLoginPage.clickToLoginButton();
+        adminDashboardPage = adminLoginPage.clickToLoginButton();
 
     }
 
     @Test
     public void Role_02_Admin_Site_Switch_To_User_Site() {
+        adminDashboardPage.clickToPromotionNavigationLink();
+
+        Assert.assertEquals(adminDashboardPage.getChildrenCountInPromotionNavigationLink(),4);
+
+        adminDashboardPage.openPageUrl(driver,this.userUrl);
+
+        Assert.assertTrue(userHomePage.isDisplayedMyAccountLink());
 
     }
 

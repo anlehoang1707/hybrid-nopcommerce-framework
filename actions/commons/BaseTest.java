@@ -54,7 +54,7 @@ public class BaseTest {
             case EDGE:
                 EdgeOptions edgeOptions = new EdgeOptions();
                 edgeOptions.addArguments("--user-data-dir=C:/Users/anlehoang/AppData/Local/Microsoft/Edge/User Data/");
-                edgeOptions.addArguments("--profile-directory=Profile 2");
+                edgeOptions.addArguments("--profile-directory=Profile 4");
                 driver = new EdgeDriver(edgeOptions);
                 break;
             case CHROME:
