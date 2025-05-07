@@ -8,21 +8,25 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.*;
-import pageObjects.sidebar.*;
+import pageObjects.users.UserCustomerInfoPO;
+import pageObjects.users.UserHomePO;
+import pageObjects.users.UserLoginPO;
+import pageObjects.users.UserRegisterPO;
+import pageObjects.users.sidebar.*;
 
 public class Level_08_Page_Navigation extends BaseTest {
     WebDriver driver;
-    CustomerInfoPageObject customerInfoPage;
-    HomePageObject homePage;
-    LoginPageObject loginPage;
-    RegisterPageObject registerPage;
-    AddressPageObject addressPage;
-    BackInStockSubscriptionsPageObject backInStockSubscriptionsPageObject;
-    ChangePasswordPageObject changePasswordPage;
-    DownloadableProductsPageObject downloadableProductsPage;
-    MyProductReviewsPageObject myProductReviewsPage;
-    OrdersPageObject ordersPage;
-    RewardPointsPageObject rewardPointsPage;
+    UserCustomerInfoPO customerInfoPage;
+    UserHomePO homePage;
+    UserLoginPO loginPage;
+    UserRegisterPO registerPage;
+    UserAddressPO addressPage;
+    UserBackInStockSubscriptionsPO userBackInStockSubscriptionsPO;
+    UserChangePasswordPO changePasswordPage;
+    UserDownloadableProductsPO downloadableProductsPage;
+    UserMyProductReviewsPO myProductReviewsPage;
+    UserOrdersPO ordersPage;
+    UserRewardPointsPO rewardPointsPage;
 
     private String firstName, lastName, email, password, companyName;
 
@@ -31,7 +35,7 @@ public class Level_08_Page_Navigation extends BaseTest {
     @BeforeClass
     public void beforeClass(String browserName) {
         driver = getBrowser(browserName);
-        homePage = PageGenerator.getHomePage(driver);
+        homePage = PageGenerator.getUserHomePage(driver);
         firstName = "An";
         lastName = "Le";
         email = "anle" + generateRandom() + "@gmail.com";

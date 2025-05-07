@@ -1,6 +1,6 @@
-package pageUIs;
+package pageUIs.users;
 
-public class RegisterPageUI {
+public class UserRegisterPageUI {
     public static final String MALE_RADIO = "//input[@id='gender-male']";
 
     public static final String FIRST_NAME_TEXT_BOX = "//input[@id = 'FirstName']";

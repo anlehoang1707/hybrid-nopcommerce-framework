@@ -2,25 +2,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="TestSuite">
-    <test name="Run on EDGE">
-        <parameter name="browser" value="edge"/>
+    <parameter name="adminUrl" value="https://admin-demo.nopcommerce.com/"/>
+    <parameter name="userUrl" value="https://demo.nopcommerce.com/" />
+    <test name="Run on CHROME">
+        <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="com.nopcommerce.users.Level_08_Page_Navigation" />
-<!--            <class name="com.nopcommerce.users.Level_05_PageFactory" />-->
+            <class name="com.nopcommerce.users.Level_09_Switch_Site_Url" />
         </classes>
     </test>
-
-<!--    <test name="Run on CHROME">-->
-<!--        <parameter name="browser" value="chrome"/>-->
-<!--        <classes>-->
-<!--            <class name="com.nopcommerce.users.Level_04_Multiple_Browser" />-->
-<!--        </classes>-->
-<!--    </test>-->
-
-<!--    <test name="Run on FIREFOX">-->
-<!--        <parameter name="browser" value="firefox"/>-->
-<!--        <classes>-->
-<!--            <class name="com.nopcommerce.users.Level_04_Multiple_Browser" />-->
-<!--        </classes>-->
-<!--    </test>-->
 </suite>

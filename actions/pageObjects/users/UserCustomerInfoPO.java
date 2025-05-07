@@ -1,25 +1,25 @@
-package pageObjects;
+package pageObjects.users;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
-import pageUIs.CustomerInfoPageUI;
+import pageUIs.users.UserCustomerInfoPageUI;
 
-public class CustomerInfoPageObject extends BasePage {
+public class UserCustomerInfoPO extends BasePage {
     private WebDriver driver;
 
-    public CustomerInfoPageObject(WebDriver driver) {
+    public UserCustomerInfoPO(WebDriver driver) {
         this.driver = driver;
     }
 
     public boolean isMaleRadioSelected() {
-        if (isControlSelected(driver,CustomerInfoPageUI.MALE_RADIO)) {
+        if (isControlSelected(driver, UserCustomerInfoPageUI.MALE_RADIO)) {
             return true;
         } else
             return false;
     }
 
     public boolean isFirstNameDisplayed(String firstName) {
-        if (getAttributeValue(driver,CustomerInfoPageUI.FIRST_NAME_TEXT_BOX,"value")
+        if (getAttributeValue(driver, UserCustomerInfoPageUI.FIRST_NAME_TEXT_BOX,"value")
                 .equals(firstName)) {
             return true;
         } else
@@ -27,7 +27,7 @@ public class CustomerInfoPageObject extends BasePage {
     }
 
     public boolean isLastNameDisplayed(String lastName) {
-        if (getAttributeValue(driver,CustomerInfoPageUI.LAST_NAME_TEXT_BOX,"value")
+        if (getAttributeValue(driver, UserCustomerInfoPageUI.LAST_NAME_TEXT_BOX,"value")
                 .equals(lastName)) {
             return true;
         } else
@@ -35,7 +35,7 @@ public class CustomerInfoPageObject extends BasePage {
     }
 
     public boolean isEmailDisplayed(String emailAddress) {
-        if (getAttributeValue(driver,CustomerInfoPageUI.EMAIL_TEXT_BOX,"value")
+        if (getAttributeValue(driver, UserCustomerInfoPageUI.EMAIL_TEXT_BOX,"value")
                 .equals(emailAddress)) {
             return true;
         } else
@@ -43,7 +43,7 @@ public class CustomerInfoPageObject extends BasePage {
     }
 
     public boolean isCompanyDisplayed(String companyName) {
-        if (getAttributeValue(driver,CustomerInfoPageUI.COMPANY_TEXT_BOX,"value")
+        if (getAttributeValue(driver, UserCustomerInfoPageUI.COMPANY_TEXT_BOX,"value")
                 .equals(companyName)) {
             return true;
         } else

@@ -1,6 +1,6 @@
-package pageUIs;
+package pageUIs.users;
 
-public class SideBarPageUI {
+public class UserBasePageUI {
     public static final String ADDRESS_LINK = "//li[contains(@class,'customer-address')]";
 
     public static final String ORDERS_LINK = "//li[contains(@class,'customer-orders')]";
@@ -14,4 +14,5 @@ public class SideBarPageUI {
     public static final String CHANGE_PASSWORD_LINK = "//li[contains(@class,'change-password')]";
 
     public static final String MY_PRODUCT_REVIEWS_LINK = "//li[contains(@class,'customer-reviews')]";
+
 }

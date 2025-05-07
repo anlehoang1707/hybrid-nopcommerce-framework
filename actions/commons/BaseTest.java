@@ -47,4 +47,31 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         return driver;
     }
+
+    protected WebDriver getBrowser(String browserName,String url) {
+        BrowserList browserList = BrowserList.valueOf(browserName.toUpperCase());
+        switch (browserList) {
+            case EDGE:
+                EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.addArguments("--user-data-dir=C:/Users/anlehoang/AppData/Local/Microsoft/Edge/User Data/");
+                edgeOptions.addArguments("--profile-directory=Profile 2");
+                driver = new EdgeDriver(edgeOptions);
+                break;
+            case CHROME:
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--user-data-dir=C:/Users/anlehoang/AppData/Local/Google/Chrome/User Data/");
+                chromeOptions.addArguments("--profile-directory=Profile 6");
+                driver = new ChromeDriver(chromeOptions);
+                break;
+            case FIREFOX:
+                driver = new FirefoxDriver();
+                break;
+            default:
+                throw new RuntimeException("Please enter valid Browser name");
+        };
+        driver.get(url);
+        explicitWait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        return driver;
+    }
 }
