@@ -20,8 +20,8 @@ public class GlobalConstants {
     public static final String ADMiN_PASSWORD = "guru99com";
 
     // Wait Info
-    public static final long SHORT_TIMEOUT = 10;
-    public static final long LONG_TIMEOUT = 30;
+    public static final long SHORT_TIMEOUT = 5;
+    public static final long LONG_TIMEOUT = 5;
 
     // Download/ Upload file
     public static final String UPLOAD_PATH = PROJECT_PATH +"/uploadFiles/";

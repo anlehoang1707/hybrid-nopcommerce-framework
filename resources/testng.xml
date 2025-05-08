@@ -7,7 +7,12 @@
     <test name="Run on Edge">
         <parameter name="browser" value="edge"/>
         <classes>
-            <class name="com.nopcommerce.users.Level_09_Switch_Site_Url" />
+            <class name="com.nopcommerce.users.Level_10_Dynamic_Page" />
         </classes>
     </test>
+<!--    <test name="Check Availability">-->
+<!--        <classes>-->
+<!--            <class name="com.nopcommerce.users.Check_Nop_Auto_Availability"></class>-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>

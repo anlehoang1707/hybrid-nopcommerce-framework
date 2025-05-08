@@ -12,6 +12,7 @@ public class UserSideBarPO extends BasePage {
         this.driver = driver;
     }
 
+    // Used for Level_08
     public UserAddressPO openAddressPage() {
         waitForElementClickable(driver, UserSideBarPageUI.ADDRESS_LINK);
         clickToElement(driver, UserSideBarPageUI.ADDRESS_LINK);
@@ -53,4 +54,34 @@ public class UserSideBarPO extends BasePage {
         clickToElement(driver, UserSideBarPageUI.REWARD_POINTS_LINK);
         return PageGenerator.getUserRewardPointsPage(driver);
     }
+
+    // Level_10_Dynamic_Page_Locator
+    public UserSideBarPO openNavigationLinkPages(String pageClassName) {
+        waitForElementClickable(driver,UserSideBarPageUI.DYNAMIC_NAVIGATION_PAGE_LINK,pageClassName);
+        clickToElement(driver,UserSideBarPageUI.DYNAMIC_NAVIGATION_PAGE_LINK,pageClassName);
+        switch (pageClassName) {
+            case "customer-address":
+                return PageGenerator.getUserAddressPage(driver);
+            case "customer-order":
+                return PageGenerator.getUserOrdersPage(driver);
+            case "downloadable-products":
+                return PageGenerator.getUserDownloadableProductsPage(driver);
+            case "back-in-stock-subscriptions":
+                return PageGenerator.getUserBackInStockSubscriptionsPage(driver);
+            case "reward-points":
+                return PageGenerator.getUserRewardPointsPage(driver);
+            case "change-password":
+                return PageGenerator.getUserChangePasswordPage(driver);
+            case "customer-reviews":
+                return PageGenerator.getUserMyProductReviewsPage(driver);
+            default:
+                throw new RuntimeException("pageClassName is not valid");
+        }
+    }
+
+    public void openNavigationLinkPage(String pageClassName) {
+        waitForElementClickable(driver,UserSideBarPageUI.DYNAMIC_NAVIGATION_PAGE_LINK,pageClassName);
+        clickToElement(driver,UserSideBarPageUI.DYNAMIC_NAVIGATION_PAGE_LINK,pageClassName);
+    }
+
 }
