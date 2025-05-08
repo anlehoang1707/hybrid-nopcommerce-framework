@@ -43,8 +43,8 @@ public class BaseTest {
                 throw new RuntimeException("Please enter valid Browser name");
         };
         driver.get("https://demo.nopcommerce.com/");
-        explicitWait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        explicitWait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
         return driver;
     }
 
@@ -70,8 +70,8 @@ public class BaseTest {
                 throw new RuntimeException("Please enter valid Browser name");
         };
         driver.get(url);
-        explicitWait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        explicitWait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
         return driver;
     }
 }

@@ -34,7 +34,7 @@ public class Level_02_BasePage_III_Inheritance extends BasePage{
 
     @Test
     public void TC_01_Register() throws InterruptedException {
-        waitForElementClickable(driver,"//a[@class = 'ico-register']",15);
+        waitForElementClickable(driver,"//a[@class = 'ico-register']");
         clickToElement(driver,"//a[@class = 'ico-register']");
         Assert.assertEquals(getTextElement(driver,"//div[@class='page-title']//h1"),"Register");
         checkTheCheckboxOrRadio(driver,"//input[@id='gender-male']");
@@ -55,7 +55,7 @@ public class Level_02_BasePage_III_Inheritance extends BasePage{
 
     @Test
     public void TC_02_Login() {
-        waitForElementClickable(driver,"//a[@class = 'ico-login']",15);
+        waitForElementClickable(driver,"//a[@class = 'ico-login']");
         clickToElement(driver,"//a[@class = 'ico-login']");
 
         sendkeyToElement(driver,"//input[@id = 'Email']",email);
@@ -66,7 +66,7 @@ public class Level_02_BasePage_III_Inheritance extends BasePage{
 
     @Test
     public void TC_03_My_Account() {
-        waitForElementClickable(driver,"//a[@class = 'ico-account']",15);
+        waitForElementClickable(driver,"//a[@class = 'ico-account']");
         clickToElement(driver,"//a[@class = 'ico-account']");
         Assert.assertEquals(getAttributeValue(driver,"//input[@id = 'FirstName']","value"),"An");
         Assert.assertEquals(getAttributeValue(driver,"//input[@id = 'LastName']","value"),"Le");

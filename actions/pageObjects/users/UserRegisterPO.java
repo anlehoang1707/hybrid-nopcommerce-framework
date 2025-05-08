@@ -13,7 +13,7 @@ public class UserRegisterPO extends BasePage {
     }
 
     public void waitForMaleRadioClickable() {
-        waitForElementClickable(driver, UserRegisterPageUI.MALE_RADIO,15);
+        waitForElementClickable(driver, UserRegisterPageUI.MALE_RADIO);
     }
 
     public void checkMaleRadio() {

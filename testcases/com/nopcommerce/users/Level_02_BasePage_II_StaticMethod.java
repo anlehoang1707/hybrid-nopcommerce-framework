@@ -36,7 +36,7 @@ public class Level_02_BasePage_II_StaticMethod {
 
     @Test
     public void TC_01_Register() throws InterruptedException {
-        basePage.waitForElementClickable(driver,"//a[@class = 'ico-register']",15);
+        basePage.waitForElementClickable(driver,"//a[@class = 'ico-register']");
         basePage.clickToElement(driver,"//a[@class = 'ico-register']");
 
         Assert.assertEquals(basePage.getTextElement(driver,"//div[@class='page-title']//h1"),"Register");
@@ -58,7 +58,7 @@ public class Level_02_BasePage_II_StaticMethod {
 
     @Test
     public void TC_02_Login() {
-        basePage.waitForElementClickable(driver,"//a[@class = 'ico-login']",15);
+        basePage.waitForElementClickable(driver,"//a[@class = 'ico-login']");
         basePage.clickToElement(driver,"//a[@class = 'ico-login']");
 
         basePage.sendkeyToElement(driver,"//input[@id = 'Email']",email);
@@ -69,7 +69,7 @@ public class Level_02_BasePage_II_StaticMethod {
 
     @Test
     public void TC_03_My_Account() {
-        basePage.waitForElementClickable(driver,"//a[@class = 'ico-account']",15);
+        basePage.waitForElementClickable(driver,"//a[@class = 'ico-account']");
         basePage.clickToElement(driver,"//a[@class = 'ico-account']");
         Assert.assertEquals(basePage.getAttributeValue(driver,"//input[@id = 'FirstName']","value"),"An");
         Assert.assertEquals(basePage.getAttributeValue(driver,"//input[@id = 'LastName']","value"),"Le");

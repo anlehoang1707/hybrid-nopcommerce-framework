@@ -13,7 +13,7 @@ public class UserHomePO extends BasePage {
     }
 
     public void waitForRegisterLinkToClick() {
-        waitForElementClickable(driver, UserHomePageUI.REGISTER_LINK,15);
+        waitForElementClickable(driver, UserHomePageUI.REGISTER_LINK);
     }
 
     public UserRegisterPO openRegisterPage() {
@@ -21,7 +21,7 @@ public class UserHomePO extends BasePage {
         return PageGenerator.getUserRegisterPage(driver);
     }
     public void waitForLogoutLinkToClick() {
-        waitForElementClickable(driver, UserHomePageUI.LOGOUT_LINK,15);
+        waitForElementClickable(driver, UserHomePageUI.LOGOUT_LINK);
     }
 
     public void clickToLogoutLink() {
@@ -29,7 +29,7 @@ public class UserHomePO extends BasePage {
     }
 
     public void waitForLoginLinkToClick() {
-        waitForElementClickable(driver, UserHomePageUI.LOGIN_LINK,15);
+        waitForElementClickable(driver, UserHomePageUI.LOGIN_LINK);
     }
 
     public UserLoginPO openLoginPage() {
