@@ -7,12 +7,12 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.PageGenerator;
-import pageObjects.users.UserCustomerInfoPO;
-import pageObjects.users.UserHomePO;
-import pageObjects.users.UserLoginPO;
-import pageObjects.users.UserRegisterPO;
-import pageObjects.users.sidebar.*;
+import pageObjects.nopcommerce.PageGenerator;
+import pageObjects.nopcommerce.users.UserCustomerInfoPO;
+import pageObjects.nopcommerce.users.UserHomePO;
+import pageObjects.nopcommerce.users.UserLoginPO;
+import pageObjects.nopcommerce.users.UserRegisterPO;
+import pageObjects.nopcommerce.users.sidebar.*;
 
 public class Level_10_Dynamic_Page extends BaseTest {
     WebDriver driver;

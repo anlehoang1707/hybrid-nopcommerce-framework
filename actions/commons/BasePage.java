@@ -6,11 +6,10 @@ import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageObjects.*;
-import pageObjects.users.sidebar.*;
-import pageUIs.users.UserBasePageUI;
+import pageObjects.nopcommerce.PageGenerator;
+import pageObjects.nopcommerce.users.sidebar.*;
+import pageUIs.nopcommerce.users.UserBasePageUI;
 
-import javax.management.RuntimeErrorException;
 import java.time.Duration;
 import java.util.List;
 import java.util.Set;
@@ -118,6 +117,10 @@ public class BasePage {
         return driver.findElements(getByLocator(locator));
     }
 
+    public List<WebElement> getListElements(WebDriver driver, String locator, String... restParameter) {
+        return driver.findElements(getByLocator(castRestParameter(locator,restParameter)));
+    }
+
     public By getByXpath(String locator) {
         return By.xpath(locator);
     }
@@ -148,7 +151,7 @@ public class BasePage {
         getElement(driver, locator).click();
     }
 
-    public void clickToElement(WebDriver driver, String locator, String restParameter) {
+    public void clickToElement(WebDriver driver, String locator, String... restParameter) {
         getElement(driver, castRestParameter(locator,restParameter)).click();
     }
 
@@ -157,7 +160,7 @@ public class BasePage {
         getElement(driver, locator).sendKeys(keysToSend);
     }
 
-    public void sendkeyToElement(WebDriver driver, String locator, String keysToSend, String restParameter) {
+    public void sendkeyToElement(WebDriver driver, String locator, String keysToSend, String... restParameter) {
         getElement(driver, castRestParameter(locator,restParameter)).clear();
         getElement(driver, castRestParameter(locator,restParameter)).sendKeys(keysToSend);
     }
@@ -166,7 +169,7 @@ public class BasePage {
         new Select(getElement(driver, locator)).selectByValue(value);
     }
 
-    public void selectItemInDropdown(WebDriver driver, String locator, String value,String restParameter) {
+    public void selectItemInDropdown(WebDriver driver, String locator, String value,String... restParameter) {
         new Select(getElement(driver, castRestParameter(locator, restParameter))).selectByValue(value);
     }
 
@@ -174,7 +177,7 @@ public class BasePage {
         return new Select(getElement(driver, locator)).getFirstSelectedOption();
     }
 
-    public WebElement getSelectedItemInDropdown(WebDriver driver, String locator,String restParameter) {
+    public WebElement getSelectedItemInDropdown(WebDriver driver, String locator,String... restParameter) {
         return new Select(getElement(driver, castRestParameter(locator,restParameter))).getFirstSelectedOption();
     }
 
@@ -199,7 +202,7 @@ public class BasePage {
         return getElement(driver, locator).getAttribute(value);
     }
 
-    public String getAttributeValue(WebDriver driver, String locator, String value,String restParameter) {
+    public String getAttributeValue(WebDriver driver, String locator, String value,String... restParameter) {
         return getElement(driver, castRestParameter(locator,restParameter)).getAttribute(value);
     }
 
@@ -207,7 +210,7 @@ public class BasePage {
         return getElement(driver, locator).getText();
     }
 
-    public String getTextElement(WebDriver driver, String locator, String restParameter) {
+    public String getTextElement(WebDriver driver, String locator, String... restParameter) {
         return getElement(driver, castRestParameter(locator, restParameter)).getText();
     }
 
@@ -223,7 +226,7 @@ public class BasePage {
         return getListElements(driver, locator).size();
     }
 
-    public int getElementsSize(WebDriver driver, String locator,String restParameter) {
+    public int getElementsSize(WebDriver driver, String locator,String... restParameter) {
         return getListElements(driver, castRestParameter(locator,restParameter)).size();
     }
 
@@ -234,7 +237,7 @@ public class BasePage {
     }
 
 
-    public void checkTheCheckboxOrRadio(WebDriver driver, String locator, String restParameter) {
+    public void checkTheCheckboxOrRadio(WebDriver driver, String locator, String... restParameter) {
         if (!getElement(driver, castRestParameter(locator, restParameter)).isSelected()) {
             getElement(driver, castRestParameter(locator, restParameter)).click();
         }
@@ -246,11 +249,17 @@ public class BasePage {
         }
     }
 
+    public void uncheckTheCheckbox(WebDriver driver, String locator,String... restParameter) {
+        if (getElement(driver, castRestParameter(locator,restParameter)).isSelected()) {
+            getElement(driver, castRestParameter(locator,restParameter)).click();
+        }
+    }
+
     public boolean isControlDisplayed(WebDriver driver, String locator) {
         return getElement(driver, locator).isDisplayed();
     }
 
-    public boolean isControlDisplayed(WebDriver driver, String locator,String restParameter) {
+    public boolean isControlDisplayed(WebDriver driver, String locator,String... restParameter) {
         return getElement(driver, castRestParameter(locator, restParameter)).isDisplayed();
     }
 
@@ -298,7 +307,7 @@ public class BasePage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', arguments[1])", element, originalStyle);
     }
 
-    public void hightlightElement(WebDriver driver, String locator,String restParameter) throws InterruptedException {
+    public void hightlightElement(WebDriver driver, String locator,String... restParameter) throws InterruptedException {
         WebElement element = getElement(driver, castRestParameter(locator,restParameter));
         String originalStyle = element.getAttribute("style");
         ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('style', arguments[1])", element, "border: 2px solid red; border-style: dashed;");
@@ -311,7 +320,7 @@ public class BasePage {
         sleepInSeconds(3);
     }
 
-    public void clickToElementByJS(WebDriver driver, String locator,String restParameter) throws InterruptedException {
+    public void clickToElementByJS(WebDriver driver, String locator,String... restParameter) throws InterruptedException {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", getElement(driver, castRestParameter(locator,restParameter)));
         sleepInSeconds(3);
     }
@@ -366,7 +375,7 @@ public class BasePage {
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(getByLocator(locator)));
     }
 
-    public void waitForListElementVisible(WebDriver driver, String locator,String restParameter) {
+    public void waitForListElementVisible(WebDriver driver, String locator,String... restParameter) {
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(getByLocator(castRestParameter(locator,restParameter))));
     }
 
@@ -378,7 +387,7 @@ public class BasePage {
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.elementToBeClickable(getByLocator(locator)));
     }
 
-    public void waitForElementClickable(WebDriver driver, String locator, String restParameter) {
+    public void waitForElementClickable(WebDriver driver, String locator, String... restParameter) {
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.elementToBeClickable(getByLocator(castRestParameter(locator,restParameter))));
     }
 
@@ -390,7 +399,7 @@ public class BasePage {
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.invisibilityOfAllElements(getListElements(driver, locator)));
     }
 
-    public void waitForListElementInvisible(WebDriver driver, String locator,String restParameter) {
+    public void waitForListElementInvisible(WebDriver driver, String locator,String... restParameter) {
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.invisibilityOfAllElements(getListElements(driver, castRestParameter(locator,restParameter))));
     }
 

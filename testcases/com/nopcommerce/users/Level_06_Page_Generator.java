@@ -7,11 +7,11 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.*;
-import pageObjects.users.UserCustomerInfoPO;
-import pageObjects.users.UserHomePO;
-import pageObjects.users.UserLoginPO;
-import pageObjects.users.UserRegisterPO;
+import pageObjects.nopcommerce.PageGenerator;
+import pageObjects.nopcommerce.users.UserCustomerInfoPO;
+import pageObjects.nopcommerce.users.UserHomePO;
+import pageObjects.nopcommerce.users.UserLoginPO;
+import pageObjects.nopcommerce.users.UserRegisterPO;
 
 public class Level_06_Page_Generator extends BaseTest {
     WebDriver driver;
