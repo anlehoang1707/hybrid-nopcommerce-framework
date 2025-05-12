@@ -16,5 +16,6 @@
     <orderEntry type="library" name="selenium-server-4.32.0" level="project" />
     <orderEntry type="library" name="selenium-server-4.15.0" level="project" />
     <orderEntry type="library" name="testng-7.10.2" level="project" />
+    <orderEntry type="library" name="log4j1" level="project" />
   </component>
 </module>

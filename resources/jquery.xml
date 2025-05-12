@@ -7,7 +7,7 @@
     <test name="Run on Firefox">
         <parameter name="browser" value="firefox"/>
         <classes>
-            <class name="com.jquery.Level_12_DataTable" />
+            <class name="com.jquery.Level_14_Log4j1" />
         </classes>
     </test>
 </suite>
