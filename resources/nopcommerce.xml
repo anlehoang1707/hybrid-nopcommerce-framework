@@ -2,6 +2,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="TestSuite">
+
+    <listeners>
+        <listener class-name="commons.MethodListener"></listener>
+    </listeners>
+
     <parameter name="adminUrl" value="https://admin-demo.nopcommerce.com/"/>
     <parameter name="userUrl" value="https://demo.nopcommerce.com/" />
     <test name="Run on Edge">

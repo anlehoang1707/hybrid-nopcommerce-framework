@@ -1,6 +1,7 @@
 package com.jquery;
 
 import commons.BaseTest;
+import io.qameta.allure.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -11,7 +12,9 @@ import org.testng.annotations.Test;
 import pageObjects.jquery.HomePO;
 import pageObjects.jquery.PageGenerator;
 
-public class Level_14_Log4j1 extends BaseTest {
+@Epic("Regression Test")
+@Feature("Table_Grid_Test")
+public class Level_15_Allure_Report extends BaseTest {
     private WebDriver driver;
     private HomePO homePage;
 
@@ -23,38 +26,39 @@ public class Level_14_Log4j1 extends BaseTest {
 
     }
 
-    //@Test
+    @Description("Table_01_SwitchPage")
+    @Story("As a User, I want to switch to different page")
+    @Severity(SeverityLevel.NORMAL)
+    @Test
     public void TC_01_Switch_Page() throws InterruptedException {
         System.out.println(driver.findElement(By.xpath("//h1")).getText());
-
-        log.info("Table_01_Data_Grid STEP_01: Click to Page Button");
         homePage.waitForPageButtonClickable("1");
         homePage.clickToPageButton("1");
         homePage.sleepInSeconds(2);
-
-
-        verifyTrue(homePage.isPageButtonActive("1"));
+        Assert.assertTrue(homePage.isPageButtonActive("1"));
 
         homePage.waitForPageButtonClickable("10");
         homePage.clickToPageButton("10");
         homePage.sleepInSeconds(2);
 
-        verifyTrue(homePage.isPageButtonActive("10"));
+        Assert.assertTrue(homePage.isPageButtonActive("10"));
 
         homePage.waitForPageButtonClickable("14");
         homePage.clickToPageButton("14");
         homePage.sleepInSeconds(2);
-
-        verifyTrue(homePage.isPageButtonActive("14"));
+        Assert.assertTrue(homePage.isPageButtonActive("14"));
 
 
 
     }
 
-    //@Test
+    @Description("Table_02_InputSearchBar")
+    @Story("As a User, I want to input data to Search Bar of Column Header")
+    @Severity(SeverityLevel.NORMAL)
+    @Test
     public void TC_02_Search_Bar() throws InterruptedException {
         //input value to searchbox Country
-        homePage.enterToTextBoxByHeaderName("headerName", "Georgia");
+        homePage.enterToTextBoxByHeaderName("Contact Person", "Georgia");
         homePage.sleepInSeconds(2);
         homePage.refreshCurrentPage(driver);
 
@@ -66,40 +70,31 @@ public class Level_14_Log4j1 extends BaseTest {
 
     }
 
+    @Description("Table_03_InputMultipleCells")
+    @Story("As a User, I want to input data to Table Grid")
+    @Severity(SeverityLevel.NORMAL)
     @Test
     public void TC_04_Input_Data_To_Grid() throws InterruptedException {
-        log.info("Table_Feature_01 STEP 01: Click to Load Button");
         homePage.clickToLoadDataButton();
-        verifyTrue(driver.findElement(By.cssSelector("a.download")).isDisplayed());
 
-
-        log.info("Table_Feature_01 STEP 02: Send Key to Cell");
         homePage.sendkeyToCellByRowIndexAndColumnName("3","Contact Person", "Seiko Ayase");
         homePage.sleepInSeconds(2);
 
-
-        log.info("Table_Feature_01 STEP 03: Send Key to Cell");
         homePage.sendkeyToCellByRowIndexAndColumnName("5","Company", "Google");
         homePage.sleepInSeconds(2);
 
-
-        log.info("Table_Feature_01 STEP 04: Send Key to Cell");
         homePage.sendkeyToCellByRowIndexAndColumnName("1","Contact Person", "Mikasa Ackerman");
         homePage.sleepInSeconds(1);
 
-        log.info("Table_Feature_01 STEP 05: Send Key to Cell");
         homePage.sendkeyToCellByRowIndexAndColumnName("1","Order Placed", "123");
         homePage.sleepInSeconds(1);
 
-        log.info("Table_Feature_01 STEP 06: Send Key to Cell");
         homePage.selectToDropdownByIndex("6","Country","Hong Kong");
         homePage.sleepInSeconds(1);
 
-        log.info("Table_Feature_01 STEP 07: Check Text Box");
         homePage.checkToCheckboxByIndex("6","NPO?",true);
         homePage.sleepInSeconds(1);
 
-        log.info("Table_Feature_01 STEP 08: Uncheck Text Box");
         homePage.checkToCheckboxByIndex("6","NPO?",false);
         homePage.sleepInSeconds(1);
 

@@ -8,9 +8,11 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.nopcommerce.PageGenerator;
 import pageObjects.nopcommerce.users.sidebar.*;
+import pageUIs.nopcommerce.BasePageUI;
 import pageUIs.nopcommerce.users.UserBasePageUI;
 
 import java.time.Duration;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -463,4 +465,58 @@ public class BasePage {
         return String.format(locator, (Object[]) restParameter);
     }
 
+    public void overrideGlobalTimeout(WebDriver driver, long timeout) {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeout));
+    }
+
+    public boolean isElementUndisplayed(WebDriver driver, String locator) {
+        System.out.println("START time =" + new Date().toString());
+        List<WebElement> elements = getListElements(driver, locator);
+        try {
+            if (elements.size() == 0) {
+                System.out.println("Element is not in DOM");
+                System.out.println("END time =" + new Date().toString());
+                return true;
+            } else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
+                System.out.println("Element is in DOM but not Displayed");
+                return true;
+            } else {
+                System.out.println("Element is in DOM and visible");
+                return false;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void sendkeyToTextboxByID(WebDriver driver, String textboxID, String keysToSend) {
+        sendkeyToElement(driver, BasePageUI.TEXTBOX_BY_ID,keysToSend,textboxID);
+    }
+
+
+    public void waitForRadioByIDToClick(WebDriver driver, String radioID) {
+        waitForElementClickable(driver,BasePageUI.RADIO_BY_ID,radioID);
+    }
+
+    public void checkRadioByID(WebDriver driver, String radioID) {
+        checkTheCheckboxOrRadio(driver,BasePageUI.RADIO_BY_ID,radioID);
+    }
+
+    public void clickToButtonByText(WebDriver driver, String buttonText) {
+        clickToElement(driver,BasePageUI.BUTTON_BY_TEXT,buttonText);
+    }
+
+    public void clickToLinkByClass(WebDriver driver, String linkClass) {
+        clickToElement(driver,BasePageUI.LINK_BY_CLASS,linkClass);
+    }
+
+    public void waitForElementVisible(WebDriver driver, String locator, String... restParameter) {
+        new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT))
+                .until(ExpectedConditions.visibilityOfElementLocated(getByLocator(castRestParameter(locator,restParameter))));
+    }
+
+    public void waitForLinkByClassToClick(WebDriver driver, String linkClass) {
+        waitForElementVisible(driver,BasePageUI.LINK_BY_CLASS,linkClass);
+    }
 }

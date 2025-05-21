@@ -2,16 +2,18 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="TestSuite">
+
     <listeners>
         <listener class-name="commons.MethodListener"></listener>
         <listener class-name="reportConfigs.AllureTestListener"></listener>
     </listeners>
-<!--    <parameter name="url" value="https://www.jqueryscript.net/demo/CRUD-Data-Grid-Plugin-jQuery-Quickgrid/" />-->
-    <parameter name="url" value="https://www.jqueryscript.net/demo/jQuery-Dynamic-Data-Grid-Plugin-appendGrid/" />
+
+    <parameter name="url" value="http://localhost:90/orangehrm5/" />
     <test name="Run on Firefox">
         <parameter name="browser" value="firefox"/>
         <classes>
-            <class name="com.jquery.Level_15_Allure_Report" />
+            <class name="com.orangeHRM.pim.PIM_01_Employee" />
         </classes>
     </test>
+
 </suite>

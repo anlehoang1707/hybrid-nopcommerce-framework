@@ -1,8 +1,7 @@
 package commons;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -12,21 +11,23 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.Random;
 
 public class BaseTest {
     protected WebDriver driver;
     protected WebDriverWait explicitWait;
-    protected final Log log;
 
-    protected BaseTest() {
-        log = LogFactory.getLog(getClass());
+    public WebDriver getDriver() {
+        return driver;
     }
 
     protected int generateRandom() {
-        return new Random().nextInt(99999);
+        return new Random().nextInt(9999);
     }
 
     protected WebDriver getBrowser(String browserName) {
@@ -83,46 +84,122 @@ public class BaseTest {
         return driver;
     }
 
+//
+//    protected boolean verifyTrue(boolean condition) {
+//        boolean status = true;
+//        try {
+//            Assert.assertTrue(condition);
+//            log.info("---------------------- Passed -----------------------");
+//        } catch (Throwable e) {
+//            status = false;
+//            VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
+//            Reporter.getCurrentTestResult().setThrowable(e);
+//            log.info("---------------------- Failed -----------------------");
+//        }
+//        return status;
+//    }
+//
+//    protected boolean verifyFalse(boolean condition) {
+//        boolean status = true;
+//        try {
+//            Assert.assertFalse(condition);
+//            log.info("---------------------- Passed -----------------------");
+//        } catch (Throwable e) {
+//            status = false;
+//            VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
+//            Reporter.getCurrentTestResult().setThrowable(e);
+//            log.info("---------------------- Failed -----------------------");
+//        }
+//        return status;
+//    }
+//
+//    protected boolean verifyEquals(Object actual, Object expected) {
+//        boolean status = true;
+//        try {
+//            Assert.assertEquals(actual, expected);
+//            log.info("---------------------- Passed -----------------------");
+//        } catch (Throwable e) {
+//            status = false;
+//            VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
+//            Reporter.getCurrentTestResult().setThrowable(e);
+//            log.info("---------------------- Failed -----------------------");
+//        }
+//        return status;
+//    }
 
-    protected boolean verifyTrue(boolean condition) {
-        boolean status = true;
-        try {
-            Assert.assertTrue(condition);
-            log.info("---------------------- Passed -----------------------");
-        } catch (Throwable e) {
-            status = false;
-            VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
-            Reporter.getCurrentTestResult().setThrowable(e);
-            log.info("---------------------- Failed -----------------------");
-        }
-        return status;
+    @BeforeSuite
+    public void deleteFileInReport() {
+        // Remove all file in ReportNG screenshot (image)
+        deleteAllFileInFolder("reportNGImage");
+
+        // Remove all file in Allure attachment (json file)
+        deleteAllFileInFolder("allure-json");
     }
 
-    protected boolean verifyFalse(boolean condition) {
-        boolean status = true;
+    public void deleteAllFileInFolder(String folderName) {
         try {
-            Assert.assertFalse(condition);
-            log.info("---------------------- Passed -----------------------");
-        } catch (Throwable e) {
-            status = false;
-            VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
-            Reporter.getCurrentTestResult().setThrowable(e);
-            log.info("---------------------- Failed -----------------------");
+            String pathFolderDownload = GlobalConstants.PROJECT_PATH + File.separator + folderName;
+            File file = new File(pathFolderDownload);
+            File[] listOfFiles = file.listFiles();
+            if (listOfFiles.length != 0) {
+                for (int i = 0; i < listOfFiles.length; i++) {
+                    if (listOfFiles[i].isFile() && !listOfFiles[i].getName().equals("environment.properties")) {
+                        new File(listOfFiles[i].toString()).delete();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
         }
-        return status;
     }
 
-    protected boolean verifyEquals(Object actual, Object expected) {
-        boolean status = true;
+    protected void closeBrowserDriver() {
+        String cmd = null;
         try {
-            Assert.assertEquals(actual, expected);
-            log.info("---------------------- Passed -----------------------");
-        } catch (Throwable e) {
-            status = false;
-            VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
-            Reporter.getCurrentTestResult().setThrowable(e);
-            log.info("---------------------- Failed -----------------------");
+            String osName = System.getProperty("os.name").toLowerCase();
+            System.out.println("OS name = " + osName);
+
+            String driverInstanceName = driver.toString().toLowerCase();
+            System.out.println("Driver instance name = " + driverInstanceName);
+
+            String browserDriverName = null;
+
+            if (driverInstanceName.contains("chrome")) {
+                browserDriverName = "chromedriver";
+            } else if (driverInstanceName.contains("internetexplorer")) {
+                browserDriverName = "IEDriverServer";
+            } else if (driverInstanceName.contains("firefox")) {
+                browserDriverName = "geckodriver";
+            } else if (driverInstanceName.contains("edge")) {
+                browserDriverName = "msedgedriver";
+            } else if (driverInstanceName.contains("opera")) {
+                browserDriverName = "operadriver";
+            } else {
+                browserDriverName = "safaridriver";
+            }
+
+            if (osName.contains("window")) {
+                cmd = "taskkill /F /FI \"IMAGENAME eq " + browserDriverName + "*\"";
+            } else {
+                cmd = "pkill " + browserDriverName;
+            }
+
+            if (driver != null) {
+                driver.manage().deleteAllCookies();
+                driver.quit();
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                Process process = Runtime.getRuntime().exec(cmd);
+                process.waitFor();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-        return status;
     }
+
 }

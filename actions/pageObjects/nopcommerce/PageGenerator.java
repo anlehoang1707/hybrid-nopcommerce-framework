@@ -11,6 +11,7 @@ import pageObjects.nopcommerce.users.sidebar.*;
 
 public class PageGenerator {
     public static UserHomePO getUserHomePage(WebDriver driver) {
+        System.out.println("UserHomePage driver's" + driver);
         return new UserHomePO(driver);
     }
 
