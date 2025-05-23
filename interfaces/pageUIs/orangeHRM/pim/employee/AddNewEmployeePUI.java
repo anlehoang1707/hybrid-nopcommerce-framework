@@ -1,6 +1,6 @@
-package pageUIs.orangeHRM.pim;
+package pageUIs.orangeHRM.pim.employee;
 
-public class PimAddEmployeePageUI {
+public class AddNewEmployeePUI {
     public static final String FIRST_NAME_TEXTBOX = "xpath=//input[@name='firstName']";
 
     public static final String MIDDLE_NAME_TEXTBOX = "xpath=//input[@name='middleName']";
@@ -31,6 +31,8 @@ public class PimAddEmployeePageUI {
     public static final String USERNAME_TEXTBOX_ERROR_MESSAGE = USERNAME_TEXTBOX + "//parent::div//following-sibling::span";
 
     public static final String CREATE_SUCCESS_TOAST_MESSAGE = "xpath=//div[contains(@class, 'oxd-toast-content')]//p[contains(@class,'toast-message')]";
+
+    public static final String CONTACT_DETAILS_NAVIGATION_LINK = "xpath =//a[text()='Contact Details']";
 
 
 

@@ -2,8 +2,8 @@ package pageObjects.orangeHRM;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
-import pageObjects.orangeHRM.pim.PimEmployeeListPO;
-import pageUIs.orangeHRM.DashboardPageUI;
+import pageObjects.orangeHRM.pim.employee.EmployeeListPO;
+import pageUIs.orangeHRM.DashboardPUI;
 
 public class DashboardPO extends BasePage {
     private WebDriver driver;
@@ -12,8 +12,8 @@ public class DashboardPO extends BasePage {
         this.driver = driver;
     }
 
-    public PimEmployeeListPO getPimListPage(WebDriver driver) {
-        clickToElement(driver, DashboardPageUI.PIM_NAVIGATION_LINK);
+    public EmployeeListPO getPimListPage(WebDriver driver) {
+        clickToElement(driver, DashboardPUI.PIM_NAVIGATION_LINK);
         return PageGenerator.getPimEmployeeListPage(driver);
     }
 }

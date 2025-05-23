@@ -67,10 +67,11 @@ public class BaseTest {
                 driver = new EdgeDriver(edgeOptions);
                 break;
             case CHROME:
-                ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.addArguments("--user-data-dir=C:/Users/anlehoang/AppData/Local/Google/Chrome/User Data/");
-                chromeOptions.addArguments("--profile-directory=Profile 6");
-                driver = new ChromeDriver(chromeOptions);
+//                ChromeOptions chromeOptions = new ChromeOptions();
+//                chromeOptions.addArguments("--user-data-dir=C:/Users/anlehoang/AppData/Local/Google/Chrome/User Data/");
+//                chromeOptions.addArguments("--profile-directory=Profile 6");
+//                driver = new ChromeDriver(chromeOptions);
+                driver = new ChromeDriver();
                 break;
             case FIREFOX:
                 driver = new FirefoxDriver();

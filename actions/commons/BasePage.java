@@ -10,6 +10,7 @@ import pageObjects.nopcommerce.PageGenerator;
 import pageObjects.nopcommerce.users.sidebar.*;
 import pageUIs.nopcommerce.BasePageUI;
 import pageUIs.nopcommerce.users.UserBasePageUI;
+import pageUIs.orangeHRM.BasePUI;
 
 import java.time.Duration;
 import java.util.Date;
@@ -81,6 +82,10 @@ public class BasePage {
 
     public WebElement getElement(WebDriver driver, String locator) {
         return driver.findElement(getByLocator(locator));
+    }
+
+    public WebElement getElement(WebDriver driver, String locator, String... restParameter) {
+        return driver.findElement(getByLocator(castRestParameter(locator,restParameter)));
     }
 
     public void switchToWindowByID(WebDriver driver, String parentID) {
@@ -518,5 +523,61 @@ public class BasePage {
 
     public void waitForLinkByClassToClick(WebDriver driver, String linkClass) {
         waitForElementVisible(driver,BasePageUI.LINK_BY_CLASS,linkClass);
+    }
+
+    public void uploadMultipleFiles(WebDriver driver, String... fileNames) {
+        String filePath = GlobalConstants.UPLOAD_PATH;
+        String fullFileName = "";
+
+        for (String file: fileNames) {
+            fullFileName += filePath + file + "\n";
+        }
+
+        fullFileName = fullFileName.trim();
+
+        getElement(driver,BasePageUI.UPLOAD_FILE_TYPE).sendKeys(fullFileName);
+    }
+
+
+    //OrangeHRM
+
+    public boolean waitForAllLoadingIconsInvisible(WebDriver driver) {
+        return new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.invisibilityOfAllElements(getListElements(driver, BasePUI.LOADING_ICON)));
+    }
+
+    public void sendKeyToTextBoxByLabelText(WebDriver driver, String labelText, String keysToSend) {
+        waitForElementVisible(driver, BasePUI.TEXTBOX_BY_LABEL,labelText);
+        sendkeyToElement(driver,BasePUI.TEXTBOX_BY_LABEL,keysToSend,labelText);
+    }
+
+    public void clickToAddButtonByContainerText(WebDriver driver, String containerText) {
+        waitForElementVisible(driver,BasePUI.ADD_BUTTON_BY_CONTAINER_TEXT,containerText);
+        clickToElement(driver,BasePUI.ADD_BUTTON_BY_CONTAINER_TEXT,containerText);
+    }
+
+    public boolean isDisplayedSuccessMessage(WebDriver driver) {
+        WebElement successMessage = new WebDriverWait(driver,Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.visibilityOf(getElement(driver,BasePUI.SUCCESS_MESSSAGE)));
+        return successMessage.isDisplayed();
+    }
+
+    public void clickToSaveButtonByContainerText(WebDriver driver, String containerText) {
+        waitForElementVisible(driver, BasePUI.SAVE_BUTTON_BY_CONTAINER_TEXT,containerText);
+        clickToElement(driver,BasePUI.SAVE_BUTTON_BY_CONTAINER_TEXT,containerText);
+    }
+
+    public void selectItemInCustomDropdownByLabelText(WebDriver driver, String labelText, String expectedItem) {
+        WebElement parentElement = getElement(driver,BasePUI.DROPDOWN_PARENT_LOCATOR_BY_LABEL_TEXT,labelText);
+        String childItemLocator = BasePUI.DROPDOWN_CHILD_LOCATOR_BY_LABEL_TEXT;
+
+        parentElement.click();
+
+        List<WebElement> allItems = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByLocator(castRestParameter(childItemLocator,labelText))));
+
+        for (WebElement item : allItems) {
+            if (item.getText().trim().equals(expectedItem)) {
+                item.click();
+                break;
+            }
+        }
     }
 }

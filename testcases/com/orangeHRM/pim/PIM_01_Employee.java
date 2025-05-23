@@ -10,26 +10,27 @@ import org.testng.annotations.Test;
 import pageObjects.orangeHRM.DashboardPO;
 import pageObjects.orangeHRM.LoginPO;
 import pageObjects.orangeHRM.PageGenerator;
-import pageObjects.orangeHRM.pim.PimAddEmployeePO;
-import pageObjects.orangeHRM.pim.PimEmployeeListPO;
-import pageObjects.orangeHRM.pim.PimEmployeePersonalDetailPO;
+import pageObjects.orangeHRM.pim.employee.*;
 
 public class PIM_01_Employee extends BaseTest {
-    private PimAddEmployeePO pimAddEmployeePage;
+    private AddNewEmployeePO addNewEmployeePage;
     private LoginPO loginPage;
-    private PimEmployeeListPO pimEmployeeListPage;
+    private EmployeeListPO EmployeeListPage;
     private DashboardPO dashboardPage;
-    private PimEmployeePersonalDetailPO pimEmployeePersonalDetailPage;
+    private PersonalDetailsPO PersonalDetailsPage;
+    private ContactDetailsPO contactDetailsPage;
+    private EmergencyContactsPO emergencyContactsPage;
+    private DependentsPO dependentsPage;
     private WebDriver driver;
     private String username;
     private String password;
-    private String firstName;
-    private String lastName;
-    private String middleName;
-    private String adminUsername;
-    private String adminPassword;
+    private String firstName, lastName, middleName;
+    private String adminUsername, adminPassword;
     private int randomNumber;
     private String initialEmployeeID;
+    private String street1,street2,city,stateProvince,zipPostalCode,countryName,homePhone,workPhone,mobilePhone,workEmail,otherEmail;
+    private String emergencyContactName, emergencyContactRelationship, emergencyHomePhone;
+    private String dependentName;
 
     @Parameters({"browser","url"})
     @BeforeClass
@@ -45,41 +46,56 @@ public class PIM_01_Employee extends BaseTest {
         lastName = "Le";
         loginPage = PageGenerator.getLoginPage(driver);
         loginPage.loginToSystem(adminUsername,adminPassword);
+        street1 = "Street 1 Name";
+        street2 = "Street 2 Name";
+        city = "HCMC";
+        stateProvince = "Q1";
+        zipPostalCode = "70000";
+        countryName = "Viet Nam";
+        homePhone = "0123456789";
+        mobilePhone= "0913351349";
+        workPhone = "0123456789";
+        workEmail = "anlh3" + randomNumber +"@company.com";
+        otherEmail = "an.lehoang1707" + randomNumber +"@gmail.com";
+        emergencyContactName = "Alex";
+        emergencyContactRelationship = "Brother";
+        emergencyHomePhone = "012345678";
+        dependentName = "Alexi";
+
     }
 
     @Test
     public void Employee_01_Add_New_Employee () throws InterruptedException {
         dashboardPage = PageGenerator.getDashboardPage(driver);
 
-        pimEmployeeListPage = dashboardPage.getPimListPage(driver);
+        EmployeeListPage = dashboardPage.getPimListPage(driver);
 
-        pimEmployeeListPage.clickToAddNewEmployeeButton();
+        EmployeeListPage.clickToAddNewEmployeeButton();
 
-        pimAddEmployeePage = PageGenerator.getPimAddEmployeePage(driver);
+        addNewEmployeePage = PageGenerator.getPimAddEmployeePage(driver);
 
-        pimAddEmployeePage.toggleCreateLoginDetailsToggle();
-        Assert.assertTrue(pimAddEmployeePage.isDisplayedUsernameTextbox());
+        addNewEmployeePage.toggleCreateLoginDetailsToggle();
+        Assert.assertTrue(addNewEmployeePage.isDisplayedUsernameTextbox());
 
-        pimAddEmployeePage.clickToSaveButton();
+        addNewEmployeePage.clickToSaveButton();
 
-        Assert.assertEquals(pimAddEmployeePage.getFullNameError(),"Required");
-        Assert.assertEquals(pimAddEmployeePage.getLastNameError(),"Required");
-        Assert.assertEquals(pimAddEmployeePage.getUsernameError(),"Required");
-        Assert.assertEquals(pimAddEmployeePage.getPasswordError(),"Required");
-        Assert.assertEquals(pimAddEmployeePage.getConfirmPasswordError(),"Passwords do not match");
+        Assert.assertEquals(addNewEmployeePage.getFullNameError(),"Required");
+        Assert.assertEquals(addNewEmployeePage.getLastNameError(),"Required");
+        Assert.assertEquals(addNewEmployeePage.getUsernameError(),"Required");
+        Assert.assertEquals(addNewEmployeePage.getPasswordError(),"Required");
+        Assert.assertEquals(addNewEmployeePage.getConfirmPasswordError(),"Passwords do not match");
 
-        pimAddEmployeePage.inputEmployeeFirstName(firstName);
-        pimAddEmployeePage.inputEmployeeMiddleName(middleName);
-        pimAddEmployeePage.inputEmployeeLastName(lastName);
-        initialEmployeeID = pimAddEmployeePage.getInitialEmployeeID();
-        pimAddEmployeePage.inputEmployeeUsername(username);
-        pimAddEmployeePage.inputEmployeePassword(password);
-        pimAddEmployeePage.inputEmployeeConfirmPassword(password);
+        addNewEmployeePage.inputEmployeeFirstName(firstName);
+        addNewEmployeePage.inputEmployeeMiddleName(middleName);
+        addNewEmployeePage.inputEmployeeLastName(lastName);
+        initialEmployeeID = addNewEmployeePage.getInitialEmployeeID();
+        addNewEmployeePage.inputEmployeeUsername(username);
+        addNewEmployeePage.inputEmployeePassword(password);
+        addNewEmployeePage.inputEmployeeConfirmPassword(password);
 
-        pimAddEmployeePage.clickToSaveButton();
+        addNewEmployeePage.clickToSaveButton();
 
-        Assert.assertTrue(pimAddEmployeePage.isDisplayedSuccessCreateToastMessage());
-
+        Assert.assertEquals(addNewEmployeePage.getSuccessCreateToastMessage(),"Successfully Saved");
     }
 
     @Test
@@ -89,27 +105,69 @@ public class PIM_01_Employee extends BaseTest {
 
     @Test
     public void Employee_03_Personal_Details () {
-        pimEmployeePersonalDetailPage = PageGenerator.getPimEmployeePersonalDetailPage(driver);
+        PersonalDetailsPage = PageGenerator.getPersonalDetailsPage(driver);
 
-        Assert.assertEquals(pimEmployeePersonalDetailPage.getFirstNameText(),firstName);
-        Assert.assertEquals(pimEmployeePersonalDetailPage.getMiddleNameText(),middleName);
-        Assert.assertEquals(pimEmployeePersonalDetailPage.getLastNameText(),lastName);
-
+        Assert.assertEquals(PersonalDetailsPage.getFirstNameText(),firstName);
+        Assert.assertEquals(PersonalDetailsPage.getMiddleNameText(),middleName);
+        Assert.assertEquals(PersonalDetailsPage.getLastNameText(),lastName);
 
     }
-
     @Test
-    public void Employee_04_Contact_Details () {
+    public void Employee_04_Contact_Details () throws InterruptedException {
+
+        contactDetailsPage = PersonalDetailsPage.getContactDetailsPage(driver);
+
+        Thread.sleep(2000);
+        contactDetailsPage.inputStreet1(street1);
+        contactDetailsPage.inputStreet2(street2);
+        contactDetailsPage.inputCity(city);
+        contactDetailsPage.inputStateProvince(stateProvince);
+        contactDetailsPage.inputZipPostalCode(zipPostalCode);
+        contactDetailsPage.selectCountryByVisibleTextValue(countryName);
+        contactDetailsPage.inputHomePhone(homePhone);
+        contactDetailsPage.inputMobilePhone(mobilePhone);
+        contactDetailsPage.inputWorkPhone(workPhone);
+        contactDetailsPage.inputWorkEmail(workEmail);
+        contactDetailsPage.inputOtherEmail(otherEmail);
+        contactDetailsPage.clickToSaveButton();
+
+        Assert.assertEquals(contactDetailsPage.getSuccessUpdateToastMessageContent(),"Successfully Updated");
 
     }
 
     @Test
     public void Employee_05_Emergency_Details () {
+        //emergencyContactsPage = PageGenerator.getEmergencyContactsPage(driver);
+        emergencyContactsPage = (EmergencyContactsPO) contactDetailsPage.getPageByNavLinkText("Emergency Contacts");
+
+        // Apply POM
+        //emergencyContactsPage.clickToAddButtonAtAssignedEmergencyContactContainer();
+        //emergencyContactsPage.inputEmergencyContactName(emergencyContactName);
+        //emergencyContactsPage.inputEmergencyContactRelationship(emergencyContactRelationship);
+
+        //Apply Pattern Object
+        emergencyContactsPage.clickToAddButtonByContainerText(driver,"Assigned Emergency Contacts");
+        emergencyContactsPage.sendKeyToTextBoxByLabelText(driver,"Name",emergencyContactName);
+        emergencyContactsPage.sendKeyToTextBoxByLabelText(driver,"Relationship",emergencyContactRelationship);
+        emergencyContactsPage.sendKeyToTextBoxByLabelText(driver,"Home Telephone",emergencyHomePhone);
+        emergencyContactsPage.clickToSaveButtonByContainerText(driver,"Save Emergency Contact");
+
+        Assert.assertTrue(emergencyContactsPage.isDisplayedSuccessMessage(driver));
 
     }
 
     @Test
     public void Employee_06_Assigned_Dependents () {
+        dependentsPage = (DependentsPO) emergencyContactsPage.getPageByNavLinkText("Dependents");
+
+        //Apply POM
+        dependentsPage.clickToAddButtonByContainerText(driver,"Assigned Dependents");
+        dependentsPage.sendKeyToTextBoxByLabelText(driver,"Name",dependentName);
+        dependentsPage.selectItemInCustomDropdownByLabelText(driver,"Relationship","Child");
+        dependentsPage.clickToSaveButtonByContainerText(driver,"Add Dependent");
+
+        Assert.assertTrue(dependentsPage.isDisplayedSuccessMessage(driver));
+
 
     }
 

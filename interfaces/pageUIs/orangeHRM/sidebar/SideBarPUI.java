@@ -1,5 +1,5 @@
 package pageUIs.orangeHRM.sidebar;
 
-public class SideBarPageUI {
+public class SideBarPUI {
     public static final String DYNAMIC_NAVIGATION_LINK = "xpath=//span[text() = '%s']//parent::a";
 }

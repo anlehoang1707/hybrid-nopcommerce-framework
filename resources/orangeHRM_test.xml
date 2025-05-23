@@ -16,4 +16,11 @@
         </classes>
     </test>
 
+    <test name="Run on Chrome">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="com.orangeHRM.pim.PIM_01_Employee" />
+        </classes>
+    </test>
+
 </suite>

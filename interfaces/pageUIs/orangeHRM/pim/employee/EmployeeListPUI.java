@@ -1,5 +1,5 @@
-package pageUIs.orangeHRM.pim;
+package pageUIs.orangeHRM.pim.employee;
 
-public class PimEmployeeListPageUI {
+public class EmployeeListPUI {
     public static final String ADD_EMPLOYEE_BUTTON = "xpath=//button[text() = ' Add ']";
 }

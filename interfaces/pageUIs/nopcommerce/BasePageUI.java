@@ -9,4 +9,6 @@ public class BasePageUI {
 
     public static final String LINK_BY_CLASS ="Xpath=//a[@class='%s']";
 
+    public static final String UPLOAD_FILE_TYPE = "Css=input[type = 'file']";
+
 }
