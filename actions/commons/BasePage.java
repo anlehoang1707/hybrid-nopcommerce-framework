@@ -580,4 +580,11 @@ public class BasePage {
             }
         }
     }
+
+
+    // BankGuru 99
+    public void sendKeyToTextBoxByTdText (WebDriver driver, String tdText, String keysToSend) {
+        waitForElementVisible(driver, pageUIs.bankguru99.BasePUI.DYNAMIC_TEXTBOX_BY_TD,tdText);
+        sendkeyToElement(driver, pageUIs.bankguru99.BasePUI.DYNAMIC_TEXTBOX_BY_TD,keysToSend,tdText);
+    }
 }

@@ -1,5 +1,6 @@
 package pageObjects.orangeHRM.pim.employee;
 
+import com.orangeHRM.pim.EmployeeData;
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
 import pageUIs.orangeHRM.pim.employee.AddNewEmployeePUI;
@@ -10,6 +11,8 @@ public class AddNewEmployeePO extends BasePage {
     public AddNewEmployeePO(WebDriver driver) {
         this.driver = driver;
     }
+
+
 
     public void inputEmployeeFirstName(String firstName) {
         sendkeyToElement(driver, AddNewEmployeePUI.FIRST_NAME_TEXTBOX,firstName);
@@ -83,5 +86,14 @@ public class AddNewEmployeePO extends BasePage {
     public String getSuccessCreateToastMessage() {
         waitForElementVisible(driver, AddNewEmployeePUI.CREATE_SUCCESS_TOAST_MESSAGE);
         return getTextElement(driver, AddNewEmployeePUI.CREATE_SUCCESS_TOAST_MESSAGE);
+    }
+
+    public void inputEmployeeInfo(EmployeeData employeeData) {
+        inputEmployeeFirstName(employeeData.getFirstName());
+        inputEmployeeMiddleName(employeeData.getMiddleName());
+        inputEmployeeLastName(employeeData.getLastName());
+        inputEmployeeUsername(employeeData.getUsername());
+        inputEmployeePassword(employeeData.getPassword());
+        inputEmployeeConfirmPassword(employeeData.getPassword());
     }
 }

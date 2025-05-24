@@ -1,5 +1,6 @@
 package pageObjects.orangeHRM.pim.employee;
 
+import com.orangeHRM.pim.EmployeeData;
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
 import pageUIs.orangeHRM.pim.employee.ContactDetailsPUI;
@@ -63,5 +64,19 @@ public class ContactDetailsPO extends EmployeeMenuPO {
     public String getSuccessUpdateToastMessageContent() {
         waitForElementVisible(driver, ContactDetailsPUI.UPDATE_SUCCESS_TOAST_MESSAGE);
         return getTextElement(driver, ContactDetailsPUI.UPDATE_SUCCESS_TOAST_MESSAGE);
+    }
+
+    public void inputEmployeeContactDetailsInfo(EmployeeData employeeData) {
+        inputStreet1(employeeData.getStreet1());
+        inputStreet2(employeeData.getStreet2());
+        inputCity(employeeData.getCity());
+        inputStateProvince(employeeData.getStateProvince());
+        inputZipPostalCode(employeeData.getZipPostalCode());
+        selectCountryByVisibleTextValue(employeeData.getCountryName());
+        inputHomePhone(employeeData.getHomePhone());
+        inputMobilePhone(employeeData.getMobilePhone());
+        inputWorkPhone(employeeData.getWorkPhone());
+        inputWorkEmail(employeeData.getWorkEmail());
+        inputOtherEmail(employeeData.getOtherEmail());
     }
 }

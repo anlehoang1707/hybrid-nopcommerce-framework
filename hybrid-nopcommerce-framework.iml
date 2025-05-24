@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/testcases" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/javaSDET" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/testData" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -18,5 +19,7 @@
     <orderEntry type="library" name="testng-7.10.2" level="project" />
     <orderEntry type="library" name="allure-java-commons-2.24.0" level="project" />
     <orderEntry type="library" name="aspectjweaver-1.9.22" level="project" />
+    <orderEntry type="library" name="javafaker" level="project" />
+    <orderEntry type="library" name="fakerDependencies" level="project" />
   </component>
 </module>

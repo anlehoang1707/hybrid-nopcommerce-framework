@@ -11,8 +11,9 @@ import pageObjects.orangeHRM.DashboardPO;
 import pageObjects.orangeHRM.LoginPO;
 import pageObjects.orangeHRM.PageGenerator;
 import pageObjects.orangeHRM.pim.employee.*;
+import utilities.FakerConfig;
 
-public class PIM_01_Employee extends BaseTest {
+public class PIM_01_Employee_FakeDataHelper extends BaseTest {
     private AddNewEmployeePO addNewEmployeePage;
     private LoginPO loginPage;
     private EmployeeListPO EmployeeListPage;
@@ -22,43 +23,48 @@ public class PIM_01_Employee extends BaseTest {
     private EmergencyContactsPO emergencyContactsPage;
     private DependentsPO dependentsPage;
     private WebDriver driver;
+    private String username;
+    private String password;
+    private String firstName, lastName, middleName;
     private String adminUsername, adminPassword;
     private int randomNumber;
     private String initialEmployeeID;
-    private EmployeeData employeeData;
+    private String street1,street2,city,stateProvince,zipPostalCode,countryName,homePhone,workPhone,mobilePhone,workEmail,otherEmail;
+    private String emergencyContactName, emergencyContactRelationship, emergencyHomePhone;
+    private String dependentName;
+    private FakerConfig faker;
 
     @Parameters({"browser","url"})
     @BeforeClass
     public void beforeClass(String browserName, String url) {
         driver = getBrowser(browserName,url);
+        faker = FakerConfig.getFaker();
         adminUsername ="automationfc";
         adminPassword ="Automation@123";
         randomNumber = generateRandom();
-
-        employeeData = EmployeeData.getEmployeeData();
-        employeeData.setUsername("anlh" + randomNumber);
-        employeeData.setPassword("AnTest@123");
-        employeeData.setFirstName("An");
-        employeeData.setMiddleName("Hoang");
-        employeeData.setLastName("Le");
-        employeeData.setStreet1("Street 1 Name");
-        employeeData.setStreet2("Street 2 Name");
-        employeeData.setCity("HCMC");
-        employeeData.setStateProvince("Q1");
-        employeeData.setZipPostalCode("700000");
-        employeeData.setCountryName("Viet Nam");
-        employeeData.setHomePhone("0123456789");
-        employeeData.setMobilePhone("0913351349");
-        employeeData.setWorkPhone("0123456789");
-        employeeData.setWorkEmail("anlh" + randomNumber + "@company.com");
-        employeeData.setOtherEmail("an.lehoang" + randomNumber + "@gmail.com");
-        employeeData.setEmergencyContactName("Alex");
-        employeeData.setEmergencyContactRelationship("Brother");
-        employeeData.setEmergencyHomePhone("9123456789");
-        employeeData.setDependentName("Alexi");
-
+        username = faker.getUserName();
+        password = faker.getPassword();
+        firstName = faker.getFirstName();
+        middleName = faker.getMiddleName();
+        lastName = faker.getLastName();
         loginPage = PageGenerator.getLoginPage(driver);
         loginPage.loginToSystem(adminUsername,adminPassword);
+        street1 = faker.getStreetAddress();
+        street2 = faker.getStreetAddress();
+        city = faker.getCity();
+        stateProvince = faker.getCity();
+        zipPostalCode = faker.getZipCode();
+        countryName = faker.getCountry();
+        homePhone = faker.getPhone();
+        mobilePhone= faker.getMobilePhone();
+        workPhone = faker.getPhone();
+        workEmail = faker.getEmail();
+        otherEmail = faker.getEmail();
+        emergencyContactName = faker.getFullName();
+        emergencyContactRelationship = faker.getRelationship();
+        emergencyHomePhone = faker.getPhone();
+        dependentName = faker.getFullName();
+
     }
 
     @Test
@@ -82,10 +88,13 @@ public class PIM_01_Employee extends BaseTest {
         Assert.assertEquals(addNewEmployeePage.getPasswordError(),"Required");
         Assert.assertEquals(addNewEmployeePage.getConfirmPasswordError(),"Passwords do not match");
 
-        addNewEmployeePage.inputEmployeeInfo(employeeData);
-
-        employeeData.setInitialEmployeeID(addNewEmployeePage.getInitialEmployeeID());
-        initialEmployeeID = employeeData.getInitialEmployeeID();
+        addNewEmployeePage.inputEmployeeFirstName(firstName);
+        addNewEmployeePage.inputEmployeeMiddleName(middleName);
+        addNewEmployeePage.inputEmployeeLastName(lastName);
+        initialEmployeeID = addNewEmployeePage.getInitialEmployeeID();
+        addNewEmployeePage.inputEmployeeUsername(username);
+        addNewEmployeePage.inputEmployeePassword(password);
+        addNewEmployeePage.inputEmployeeConfirmPassword(password);
 
         addNewEmployeePage.clickToSaveButton();
 
@@ -101,9 +110,9 @@ public class PIM_01_Employee extends BaseTest {
     public void Employee_03_Personal_Details () {
         PersonalDetailsPage = PageGenerator.getPersonalDetailsPage(driver);
 
-        Assert.assertEquals(PersonalDetailsPage.getFirstNameText(),employeeData.getFirstName());
-        Assert.assertEquals(PersonalDetailsPage.getMiddleNameText(),employeeData.getMiddleName());
-        Assert.assertEquals(PersonalDetailsPage.getLastNameText(),employeeData.getLastName());
+        Assert.assertEquals(PersonalDetailsPage.getFirstNameText(),firstName);
+        Assert.assertEquals(PersonalDetailsPage.getMiddleNameText(),middleName);
+        Assert.assertEquals(PersonalDetailsPage.getLastNameText(),lastName);
 
     }
     @Test
@@ -112,9 +121,17 @@ public class PIM_01_Employee extends BaseTest {
         contactDetailsPage = PersonalDetailsPage.getContactDetailsPage(driver);
 
         Thread.sleep(2000);
-
-        contactDetailsPage.inputEmployeeContactDetailsInfo(employeeData);
-
+        contactDetailsPage.inputStreet1(street1);
+        contactDetailsPage.inputStreet2(street2);
+        contactDetailsPage.inputCity(city);
+        contactDetailsPage.inputStateProvince(stateProvince);
+        contactDetailsPage.inputZipPostalCode(zipPostalCode);
+        contactDetailsPage.selectCountryByVisibleTextValue(countryName);
+        contactDetailsPage.inputHomePhone(homePhone);
+        contactDetailsPage.inputMobilePhone(mobilePhone);
+        contactDetailsPage.inputWorkPhone(workPhone);
+        contactDetailsPage.inputWorkEmail(workEmail);
+        contactDetailsPage.inputOtherEmail(otherEmail);
         contactDetailsPage.clickToSaveButton();
 
         Assert.assertEquals(contactDetailsPage.getSuccessUpdateToastMessageContent(),"Successfully Updated");
@@ -133,9 +150,9 @@ public class PIM_01_Employee extends BaseTest {
 
         //Apply Pattern Object
         emergencyContactsPage.clickToAddButtonByContainerText(driver,"Assigned Emergency Contacts");
-        emergencyContactsPage.sendKeyToTextBoxByLabelText(driver,"Name", employeeData.getEmergencyContactName());
-        emergencyContactsPage.sendKeyToTextBoxByLabelText(driver,"Relationship", employeeData.getEmergencyContactRelationship());
-        emergencyContactsPage.sendKeyToTextBoxByLabelText(driver,"Home Telephone", employeeData.getEmergencyHomePhone());
+        emergencyContactsPage.sendKeyToTextBoxByLabelText(driver,"Name",emergencyContactName);
+        emergencyContactsPage.sendKeyToTextBoxByLabelText(driver,"Relationship",emergencyContactRelationship);
+        emergencyContactsPage.sendKeyToTextBoxByLabelText(driver,"Home Telephone",emergencyHomePhone);
         emergencyContactsPage.clickToSaveButtonByContainerText(driver,"Save Emergency Contact");
 
         Assert.assertTrue(emergencyContactsPage.isDisplayedSuccessMessage(driver));
@@ -148,7 +165,7 @@ public class PIM_01_Employee extends BaseTest {
 
         //Apply POM
         dependentsPage.clickToAddButtonByContainerText(driver,"Assigned Dependents");
-        dependentsPage.sendKeyToTextBoxByLabelText(driver,"Name",employeeData.getDependentName());
+        dependentsPage.sendKeyToTextBoxByLabelText(driver,"Name",dependentName);
         dependentsPage.selectItemInCustomDropdownByLabelText(driver,"Relationship","Child");
         dependentsPage.clickToSaveButtonByContainerText(driver,"Add Dependent");
 

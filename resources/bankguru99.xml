@@ -8,19 +8,11 @@
         <listener class-name="reportConfigs.AllureTestListener"></listener>
     </listeners>
 
-    <parameter name="url" value="http://localhost:90/orangehrm5/" />
+    <parameter name="url" value="https://demo.guru99.com/V1/index.php" />
     <test name="Run on Firefox">
         <parameter name="browser" value="firefox"/>
         <classes>
-            <class name="com.orangeHRM.pim.PIM_01_Employee_Pojo" />
+            <class name="com.bankguru99.customer.Customer_01" />
         </classes>
     </test>
-
-    <test name="Run on Chrome">
-        <parameter name="browser" value="chrome"/>
-        <classes>
-            <class name="com.orangeHRM.pim.PIM_01_Employee_Pojo" />
-        </classes>
-    </test>
-
 </suite>
