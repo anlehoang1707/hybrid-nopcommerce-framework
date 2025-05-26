@@ -21,5 +21,6 @@
     <orderEntry type="library" name="aspectjweaver-1.9.22" level="project" />
     <orderEntry type="library" name="javafaker" level="project" />
     <orderEntry type="library" name="fakerDependencies" level="project" />
+    <orderEntry type="library" name="JacksonJSONLib" level="project" />
   </component>
 </module>

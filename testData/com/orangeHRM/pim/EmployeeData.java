@@ -1,9 +1,6 @@
 package com.orangeHRM.pim;
 
 public class EmployeeData {
-    private String username;
-    private String password;
-    private String firstName;
 
     public static EmployeeData getEmployeeData() {
         return new EmployeeData();
@@ -177,6 +174,9 @@ public class EmployeeData {
         this.dependentName = dependentName;
     }
 
+    private String username;
+    private String password;
+    private String firstName;
     private String lastName;
     private String middleName;
     private String initialEmployeeID;
