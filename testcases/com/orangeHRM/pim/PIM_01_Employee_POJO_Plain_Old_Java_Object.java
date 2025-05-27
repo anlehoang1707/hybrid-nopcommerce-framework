@@ -12,7 +12,7 @@ import pageObjects.orangeHRM.LoginPO;
 import pageObjects.orangeHRM.PageGenerator;
 import pageObjects.orangeHRM.pim.employee.*;
 
-public class PIM_01_Employee extends BaseTest {
+public class PIM_01_Employee_POJO_Plain_Old_Java_Object extends BaseTest {
     private AddNewEmployeePO addNewEmployeePage;
     private LoginPO loginPage;
     private EmployeeListPO EmployeeListPage;

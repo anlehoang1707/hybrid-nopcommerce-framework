@@ -46,4 +46,5 @@ public class GlobalConstants {
     //For OrangeHRM5
     public static final String EMPLOYEE_DATA_TEST_PATH = PROJECT_PATH + "/testData/com/orangeHRM/pim/";
 
+
 }
