@@ -11,6 +11,7 @@ import pageObjects.nopcommerce.users.sidebar.*;
 import pageUIs.nopcommerce.BasePageUI;
 import pageUIs.nopcommerce.users.UserBasePageUI;
 import pageUIs.orangeHRM.BasePUI;
+import pageUIs.sytner.JumpPointsPUI;
 
 import java.time.Duration;
 import java.util.Date;
@@ -33,6 +34,10 @@ public class BasePage {
 
     public void openPageUrl(WebDriver driver, String url) {
         driver.get(url);
+    }
+
+    public String getPageUrl(WebDriver driver) {
+        return driver.getCurrentUrl();
     }
 
     public String getPageTitle(WebDriver driver) {
@@ -336,8 +341,17 @@ public class BasePage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", getElement(driver, locator));
     }
 
+    public void scrollToElementOnTopByJS(WebDriver driver, String locator,String... restParameter) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", getElement(driver, castRestParameter(locator,restParameter)));
+    }
+
+
     public void scrollToElementOnDownByJS(WebDriver driver, String locator) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(false);", getElement(driver, locator));
+    }
+
+    public void scrollToElementOnDownByJS(WebDriver driver, String locator,String... restParameter) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(false);", getElement(driver, castRestParameter(locator,restParameter)));
     }
 
     public void scrollToBottomPageByJS(WebDriver driver) {
@@ -586,5 +600,10 @@ public class BasePage {
     public void sendKeyToTextBoxByTdText (WebDriver driver, String tdText, String keysToSend) {
         waitForElementVisible(driver, pageUIs.bankguru99.BasePUI.DYNAMIC_TEXTBOX_BY_TD,tdText);
         sendkeyToElement(driver, pageUIs.bankguru99.BasePUI.DYNAMIC_TEXTBOX_BY_TD,keysToSend,tdText);
+    }
+
+    // Sytner
+    public boolean isBrandIconDisplayed (WebDriver driver, String brandName){
+        return isControlDisplayed(driver, JumpPointsPUI.DYNAMIC_BRAND_NAME_ICON,brandName);
     }
 }

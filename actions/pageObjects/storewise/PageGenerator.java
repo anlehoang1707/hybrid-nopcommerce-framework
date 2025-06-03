@@ -1,16 +1,14 @@
-package pageObjects.saucelab;
+package pageObjects.storewise;
 
 import org.openqa.selenium.WebDriver;
-import pageObjects.storewise.HomePO;
 
 public class PageGenerator {
-
-    public static LoginPO getLoginPage(WebDriver driver) {
-        return new LoginPO(driver);
+    public static HomePO getHomePage(WebDriver driver) {
+        return new HomePO(driver);
     }
 
     public static ProductListPO getProductListPage(WebDriver driver) {
         return new ProductListPO(driver);
     }
-}
 
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="TestSuite" parallel="classes">
+
+<!--    <listeners>-->
+<!--        <listener class-name="commons.MethodListener"></listener>-->
+<!--        <listener class-name="reportConfigs.AllureTestListener"></listener>-->
+<!--    </listeners>-->
+
+    <parameter name="url" value="https://www.sytner.co.uk/" />
+    <test name="Run on Firefox">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="com.sytner.HomePage_001_MenuItems" />
+            <class name="com.sytner.HomePage_003_JumpPoints" />
+        </classes>
+    </test>
+
+</suite>

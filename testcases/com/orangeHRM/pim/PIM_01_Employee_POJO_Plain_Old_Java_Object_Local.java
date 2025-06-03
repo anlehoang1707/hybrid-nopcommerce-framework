@@ -12,7 +12,7 @@ import pageObjects.orangeHRM.LoginPO;
 import pageObjects.orangeHRM.PageGenerator;
 import pageObjects.orangeHRM.pim.employee.*;
 
-public class PIM_01_Employee_POJO_Plain_Old_Java_Object extends BaseTest {
+public class PIM_01_Employee_POJO_Plain_Old_Java_Object_Local extends BaseTest {
     private AddNewEmployeePO addNewEmployeePage;
     private LoginPO loginPage;
     private EmployeeListPO EmployeeListPage;
@@ -27,11 +27,11 @@ public class PIM_01_Employee_POJO_Plain_Old_Java_Object extends BaseTest {
     private String initialEmployeeID;
     private EmployeeData employeeData;
 
-    @Parameters({"browser","url","osName","ipAddress","port"})
+    @Parameters({"browser","url"})
     @BeforeClass
-    public void beforeClass(String browserName, String url, String osName, String ipAddress,String portNumber) {
+    public void beforeClass(String browserName, String url) {
 //        driver = getBrowser(browserName,url);
-        driver = getBrowserDriver(browserName,url,osName,ipAddress,portNumber);
+        driver = getBrowser(browserName,url);
         adminUsername ="automationfc";
         adminPassword ="Automation@123";
         randomNumber = generateRandom();
