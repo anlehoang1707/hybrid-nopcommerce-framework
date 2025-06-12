@@ -1,5 +1,9 @@
 package commons;
 
+import factoryBrowser.BrowserNotSupportedException;
+import factoryBrowser.ChromeDriverManager;
+import factoryBrowser.EdgeDriverManager;
+import factoryBrowser.FirefoxDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -106,6 +110,28 @@ public class BaseTest {
             default:
                 throw new RuntimeException("Please enter valid Browser name");
         };
+        driver.get("https://demo.nopcommerce.com/");
+        explicitWait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
+        return driver;
+    }
+
+    protected WebDriver getBrowserUsingFactoryPattern(String browserName) {
+        BrowserList browserList = BrowserList.valueOf(browserName.toUpperCase());
+        switch (browserList) {
+            case EDGE:
+                driver = new EdgeDriverManager().getDriverBrowser();
+                break;
+            case CHROME:
+                driver = new ChromeDriverManager().getDriverBrowser();
+                break;
+            case FIREFOX:
+                driver = new FirefoxDriverManager().getDriverBrowser();
+                break;
+            default:
+                throw new BrowserNotSupportedException(browserName);
+        };
+
         driver.get("https://demo.nopcommerce.com/");
         explicitWait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.SHORT_TIMEOUT));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
